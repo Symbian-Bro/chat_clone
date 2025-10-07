@@ -6,6 +6,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  var string1 = "Hello World!!";
+  List<String> notes = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,9 +72,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ListView(
                     scrollDirection: Axis.vertical,
                     padding: EdgeInsets.all(0),
-                    shrinkWrap: false,
+                    shrinkWrap: true,
                     physics: ScrollPhysics(),
-                    children: [],
+                    children: [
+                      Text(
+                        "$string1"
+                      )
+                    ],
                   ),
                 ),
               ],
