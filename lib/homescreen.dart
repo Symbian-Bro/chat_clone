@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,13 +50,13 @@ class HomeScreen extends StatelessWidget {
                         border: Border.all(color: Color(0x4d9e9e9e), width: 1),
                       ),
                       child: Text(
-                        "Text",
+                        "Scribble Down",
                         textAlign: TextAlign.start,
                         overflow: TextOverflow.clip,
                         style: TextStyle(
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.bold,
                           fontStyle: FontStyle.normal,
-                          fontSize: 14,
+                          fontSize: 30,
                           color: Color(0xff000000),
                         ),
                       ),
@@ -93,7 +98,9 @@ class HomeScreen extends StatelessWidget {
                     controller: TextEditingController(),
                     obscureText: false,
                     textAlign: TextAlign.start,
-                    maxLines: 1,
+                    maxLines: null,
+                    minLines: null,
+                    expands: true,
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
@@ -102,21 +109,21 @@ class HomeScreen extends StatelessWidget {
                     ),
                     decoration: InputDecoration(
                       disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
+                        borderRadius: BorderRadius.circular(30.0),
                         borderSide:
                         BorderSide(color: Color(0xff000000), width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
+                        borderRadius: BorderRadius.circular(30.0),
                         borderSide:
                         BorderSide(color: Color(0xff000000), width: 1),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
+                        borderRadius: BorderRadius.circular(30.0),
                         borderSide:
                         BorderSide(color: Color(0xff000000), width: 1),
                       ),
-                      hintText: "Enter Text",
+                      hintText: "Add a new note :)",
                       hintStyle: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
@@ -135,15 +142,15 @@ class HomeScreen extends StatelessWidget {
                   color: Color(0xffffffff),
                   elevation: 0,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero,
+                    borderRadius: BorderRadius.circular(30.0),
                     side: BorderSide(color: Color(0xff808080), width: 1),
                   ),
                   padding: EdgeInsets.all(16),
                   child: Text(
-                    "Button",
+                    "ADD",
                     style: TextStyle(
                       fontSize: 14,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.normal,
                     ),
                   ),
