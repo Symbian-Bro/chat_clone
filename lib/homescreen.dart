@@ -7,8 +7,25 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  var string1 = "Hello World!!";
+  var string1 = "Test!!";
   List<String> notes = [];
+  final TextEditingController txtController = TextEditingController();
+
+  void push_data() {
+    setState(() {
+      if (txtController.text.isNotEmpty) {
+        notes.add(txtController.text);
+        txtController.clear();
+      }
+      else{
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Please enter a note"),
+            duration: Duration(milliseconds: 400),),
+        );
+        txtController.clear();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +163,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    push_data();
+                  },
                   color: Color(0xffffffff),
                   elevation: 0,
                   shape: RoundedRectangleBorder(
