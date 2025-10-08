@@ -12,18 +12,22 @@ class _HomeScreenState extends State<HomeScreen> {
   List<String> notes = [];
   final TextEditingController txtController = TextEditingController();
 
+  void toast(String a){
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text("$a"),
+        duration: Duration(milliseconds: 400),
+      ),
+    );
+  }
+
   void push_data() {
     setState(() {
       if (txtController.text.isNotEmpty) {
         notes.add(txtController.text);
         txtController.clear();
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text("Please enter a note"),
-            duration: Duration(milliseconds: 400),
-          ),
-        );
+        toast("Please enter a note");
         txtController.clear();
       }
     });
@@ -74,23 +78,13 @@ class _HomeScreenState extends State<HomeScreen> {
         if (notes.isNotEmpty) {
           notes.removeLast();
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text("No notes to delete"),
-              duration: Duration(milliseconds: 400),
-            ),
-          );
+          toast("No notes to delete");
         }
       } else {
         if (notes.isNotEmpty) {
           dialog();
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text("Long press to delete all the notes"),
-              duration: Duration(milliseconds: 400),
-            ),
-          );
+          toast("Long press to delete all the notes");
         }
       }
     });
