@@ -59,6 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     setState(() {
                       notes.clear();
+                      toast("All notes deleted");
                       Navigator.of(context).pop();
                     });
                   },
