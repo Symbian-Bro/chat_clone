@@ -77,11 +77,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             IconButton(
                               onPressed: () {},
                               icon: Icon(Icons.delete),
                             ),
+                            Spacer(),
                             Text(
                               "Scribble Down",
                               textAlign: TextAlign.start,
@@ -93,6 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Color(0xff000000),
                               ),
                             ),
+                            Spacer(),
                             IconButton(
                               onPressed: () {},
                               icon: Icon(Icons.sync),
@@ -109,7 +112,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: EdgeInsets.all(0),
                       shrinkWrap: true,
                       physics: ScrollPhysics(),
-                      children: [],
+                      children: notes.map((item) {
+                        return Card(
+                          elevation: 10,
+                          child: ListTile(title: Text(item)),
+                        );
+                      }).toList(),
                     ),
                   ),
                 ],
