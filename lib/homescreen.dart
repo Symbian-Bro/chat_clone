@@ -30,37 +30,37 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void dialog() {
+    int size = notes.length;
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                color: Colors.red,
-                width: 3,
-                style: BorderStyle.solid,
-              ),
-            ),
-            child: Text("⚠️ Confirm action ⚠️", textAlign: TextAlign.center),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            side: BorderSide(color: Colors.red, width: 8),
           ),
-          content: Text("Are you sure you want to delete all the notes?"),
+          title: Text("⚠️ Confirm action ⚠️", textAlign: TextAlign.center),
+          content: Text("Are you sure you want to delete all the\n $size notes?", textAlign: TextAlign.center),
           actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text("Cancel"),
-            ),
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  notes.clear();
-                  Navigator.of(context).pop();
-                });
-              },
-              child: Text("Delete"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("Cancel"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      notes.clear();
+                      Navigator.of(context).pop();
+                    });
+                  },
+                  child: Text("Delete"),
+                ),
+              ],
             ),
           ],
         );
@@ -87,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text("No notes to delete"),
+              content: Text("Long press to delete all the notes"),
               duration: Duration(milliseconds: 400),
             ),
           );
