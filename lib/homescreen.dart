@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   var string1 = "Test!!";
   List<String> notes = [];
   final TextEditingController txtController = TextEditingController();
@@ -16,11 +17,12 @@ class _HomeScreenState extends State<HomeScreen> {
       if (txtController.text.isNotEmpty) {
         notes.add(txtController.text);
         txtController.clear();
-      }
-      else{
+      } else {
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Please enter a note"),
-            duration: Duration(milliseconds: 400),),
+          SnackBar(
+            content: Text("Please enter a note"),
+            duration: Duration(milliseconds: 400),
+          ),
         );
         txtController.clear();
       }
@@ -36,69 +38,82 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          Container(
-            alignment: Alignment.topCenter,
-            margin: EdgeInsets.all(0),
-            padding: EdgeInsets.all(0),
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.9,
-            decoration: BoxDecoration(
-              color: Color(0x1f000000),
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.zero,
-              border: Border.all(color: Color(0x4d9e9e9e), width: 1),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.all(0),
-                      padding: EdgeInsets.all(0),
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      decoration: BoxDecoration(
-                        color: Color(0x1f000000),
-                        shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.zero,
-                        border: Border.all(color: Color(0x4d9e9e9e), width: 1),
-                      ),
-                      child: Text(
-                        "Scribble Down",
-                        textAlign: TextAlign.start,
-                        overflow: TextOverflow.clip,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.normal,
-                          fontSize: 30,
-                          color: Color(0xff000000),
+          Expanded(
+            child: Container(
+              alignment: Alignment.topCenter,
+              margin: EdgeInsets.all(0),
+              padding: EdgeInsets.all(0),
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.9,
+              decoration: BoxDecoration(
+                color: Color(0x1f000000),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.zero,
+                border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        margin: EdgeInsets.all(0),
+                        padding: EdgeInsets.fromLTRB(0, 35, 0, 0),
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        decoration: BoxDecoration(
+                          color: Color(0x1f000000),
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.zero,
+                          border: Border.all(
+                            color: Color(0x4d9e9e9e),
+                            width: 1,
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.delete),
+                            ),
+                            Text(
+                              "Scribble Down",
+                              textAlign: TextAlign.start,
+                              overflow: TextOverflow.clip,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FontStyle.normal,
+                                fontSize: 30,
+                                color: Color(0xff000000),
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.sync),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  flex: 1,
-                  child: ListView(
-                    scrollDirection: Axis.vertical,
-                    padding: EdgeInsets.all(0),
-                    shrinkWrap: true,
-                    physics: ScrollPhysics(),
-                    children: [
-                      Text(
-                        "$string1"
-                      )
                     ],
                   ),
-                ),
-              ],
+                  Expanded(
+                    flex: 1,
+                    child: ListView(
+                      scrollDirection: Axis.vertical,
+                      padding: EdgeInsets.all(0),
+                      shrinkWrap: true,
+                      physics: ScrollPhysics(),
+                      children: [],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           Container(
@@ -120,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Expanded(
                   flex: 1,
                   child: TextField(
-                    controller: TextEditingController(),
+                    controller: txtController,
                     obscureText: false,
                     textAlign: TextAlign.start,
                     maxLines: null,
@@ -135,18 +150,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     decoration: InputDecoration(
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30.0),
-                        borderSide:
-                        BorderSide(color: Color(0xff000000), width: 1),
+                        borderSide: BorderSide(
+                          color: Color(0xff000000),
+                          width: 1,
+                        ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30.0),
-                        borderSide:
-                        BorderSide(color: Color(0xff000000), width: 1),
+                        borderSide: BorderSide(
+                          color: Color(0xff000000),
+                          width: 1,
+                        ),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30.0),
-                        borderSide:
-                        BorderSide(color: Color(0xff000000), width: 1),
+                        borderSide: BorderSide(
+                          color: Color(0xff000000),
+                          width: 1,
+                        ),
                       ),
                       hintText: "Add a new note :)",
                       hintStyle: TextStyle(
@@ -173,6 +194,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     side: BorderSide(color: Color(0xff808080), width: 1),
                   ),
                   padding: EdgeInsets.all(16),
+                  textColor: Color(0xff000000),
+                  height: MediaQuery.of(context).size.height,
+                  minWidth: 140,
                   child: Text(
                     "ADD",
                     style: TextStyle(
@@ -181,9 +205,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontStyle: FontStyle.normal,
                     ),
                   ),
-                  textColor: Color(0xff000000),
-                  height: MediaQuery.of(context).size.height,
-                  minWidth: 140,
                 ),
               ],
             ),
