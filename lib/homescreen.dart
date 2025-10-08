@@ -29,24 +29,21 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void dialog(){
+  void dialog() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  color: Colors.red,
-                  width: 3,
-                  style: BorderStyle.solid,
-                )
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: Colors.red,
+                width: 3,
+                style: BorderStyle.solid,
+              ),
             ),
-            child: Text(
-              "⚠️ Confirm action ⚠️",
-              textAlign: TextAlign.center,
-            ),
+            child: Text("⚠️ Confirm action ⚠️", textAlign: TextAlign.center),
           ),
           content: Text("Are you sure you want to delete all the notes?"),
           actions: [
@@ -73,11 +70,28 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void delete(int a) {
     setState(() {
-      if (a == 1) {
-        notes.removeLast();
-      }
-      else{
-        dialog();
+      if (a == 0) {
+        if (notes.isNotEmpty) {
+          notes.removeLast();
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("No notes to delete"),
+              duration: Duration(milliseconds: 400),
+            ),
+          );
+        }
+      } else {
+        if (notes.isNotEmpty) {
+          dialog();
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("No notes to delete"),
+              duration: Duration(milliseconds: 400),
+            ),
+          );
+        }
       }
     });
   }
@@ -137,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 delete(0);
                               },
                               onLongPress: () {
-                                delete(0);
+                                delete(1);
                               },
                               icon: Icon(Icons.delete),
                             ),
