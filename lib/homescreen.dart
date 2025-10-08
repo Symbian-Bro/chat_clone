@@ -29,31 +29,55 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void dialog(){
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: Colors.red,
+                  width: 3,
+                  style: BorderStyle.solid,
+                )
+            ),
+            child: Text(
+              "⚠️ Confirm action ⚠️",
+              textAlign: TextAlign.center,
+            ),
+          ),
+          content: Text("Are you sure you want to delete all the notes?"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("Cancel"),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  notes.clear();
+                  Navigator.of(context).pop();
+                });
+              },
+              child: Text("Delete"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void delete(int a) {
     setState(() {
       if (a == 1) {
         notes.removeLast();
-      } else {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Color(0xff000000),
-                    width: 3,
-                  )
-                ),
-                child: Text(
-                  "⚠️ Confirm action ⚠️",
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              content: Text("Are you sure you want to delete all notes?"),
-            );
-          },
-        );
+      }
+      else{
+        dialog();
       }
     });
   }
@@ -110,10 +134,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             IconButton(
                               onPressed: () {
-                                delete(2);
+                                delete(0);
                               },
                               onLongPress: () {
-                                delete(2);
+                                delete(0);
                               },
                               icon: Icon(Icons.delete),
                             ),
