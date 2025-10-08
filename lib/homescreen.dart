@@ -29,6 +29,35 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void delete(int a) {
+    setState(() {
+      if (a == 1) {
+        notes.removeLast();
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Color(0xff000000),
+                    width: 3,
+                  )
+                ),
+                child: Text(
+                  "⚠️ Confirm action ⚠️",
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              content: Text("Are you sure you want to delete all notes?"),
+            );
+          },
+        );
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,7 +109,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                delete(2);
+                              },
+                              onLongPress: () {
+                                delete(2);
+                              },
                               icon: Icon(Icons.delete),
                             ),
                             Spacer(),
