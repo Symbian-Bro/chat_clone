@@ -12,12 +12,9 @@ class _HomeScreenState extends State<HomeScreen> {
   List<String> notes = [];
   final TextEditingController txtController = TextEditingController();
 
-  void toast(String a){
+  void toast(String a) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("$a"),
-        duration: Duration(milliseconds: 400),
-      ),
+      SnackBar(content: Text("$a"), duration: Duration(milliseconds: 400)),
     );
   }
 
@@ -44,7 +41,10 @@ class _HomeScreenState extends State<HomeScreen> {
             side: BorderSide(color: Colors.red, width: 8),
           ),
           title: Text("⚠️ Confirm action ⚠️", textAlign: TextAlign.center),
-          content: Text("Are you sure you want to delete all the\n $size notes?", textAlign: TextAlign.center),
+          content: Text(
+            "Are you sure you want to delete all the\n $size notes?",
+            textAlign: TextAlign.center,
+          ),
           actions: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -163,7 +163,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             Spacer(),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                toast("Cloud sync coming soon...");
+                              },
                               icon: Icon(Icons.sync),
                             ),
                           ],
