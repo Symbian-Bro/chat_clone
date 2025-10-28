@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
         notes.add(txtController.text);
         txtController.clear();
       } else {
-        toast("Please enter a note");
+        toast("Please enter a message");
         txtController.clear();
       }
     });
@@ -246,7 +246,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 1,
                         ),
                       ),
-                      hintText: "Add a new note :)",
+                      hintText: "Message",
                       hintStyle: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
@@ -262,7 +262,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 MaterialButton(
                   onPressed: () {
-                    push_data();
+                    if (txtController.text.isNotEmpty) {
+                      push_data();
+                    } else {
+                      toast("Voice notes coming soon!!");
+                    }
                   },
                   color: Color(0xffffffff),
                   elevation: 0,
@@ -274,14 +278,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   textColor: Color(0xff000000),
                   height: MediaQuery.of(context).size.height,
                   minWidth: 140,
-                  child: Text(
-                    "ADD",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.normal,
-                    ),
-                  ),
+                  child: Icon(
+                    Icons.mic,
+                    color: Color(0xff000000),
+                  )
                 ),
               ],
             ),
