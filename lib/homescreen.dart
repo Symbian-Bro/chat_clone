@@ -150,7 +150,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                               icon: Icon(Icons.arrow_back),
                             ),
-                            Spacer(),
+
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: CircleAvatar(
+                                radius: 20,
+                                child: Icon(Icons.person, color: Colors.white),
+                              ),
+                            ),
+
                             Text(
                               "Recipient",
                               textAlign: TextAlign.start,
