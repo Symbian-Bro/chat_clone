@@ -206,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: notes.map((item) {
                         return Card(
                           color: Color(0xffdcf8c6),
-                          elevation: 10,
+                          elevation: 1,
                           child: ListTile(
                             title: Align(
                               alignment: Alignment.centerRight,
@@ -296,11 +296,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       toast("Voice notes coming soon!!");
                     }
                   },
-                  color: Color(0xffffffff),
+                  color: Color(0xff075e54),
                   elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                    side: BorderSide(color: Color(0xff808080), width: 1),
+                  shape: CircleBorder(
+                    side: BorderSide(
+                      color: Colors.greenAccent,
+                      width: 1,
+                    ),
                   ),
                   padding: EdgeInsets.all(16),
                   textColor: Color(0xff000000),
@@ -308,7 +310,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   minWidth: 140,
                   child: Icon(
                     Icons.mic,
-                    color: Color(0xff000000),
+                    color: Colors.white,
                   )
                 ),
               ],
