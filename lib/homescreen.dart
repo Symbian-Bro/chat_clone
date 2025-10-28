@@ -148,26 +148,38 @@ class _HomeScreenState extends State<HomeScreen> {
                               onLongPress: () {
                                 delete(1);
                               },
-                              icon: Icon(Icons.delete),
+                              icon: Icon(Icons.arrow_back),
                             ),
                             Spacer(),
                             Text(
-                              "Scribble Down",
+                              "Recipient",
                               textAlign: TextAlign.start,
                               overflow: TextOverflow.clip,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontStyle: FontStyle.normal,
-                                fontSize: 30,
+                                fontSize: 25,
                                 color: Color(0xff000000),
                               ),
                             ),
                             Spacer(),
                             IconButton(
                               onPressed: () {
+                                toast("Video calls coming soon...");
+                              },
+                              icon: Icon(Icons.video_camera_front_outlined),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                toast("Voice calls coming soon...");
+                              },
+                              icon: Icon(Icons.call),
+                            ),
+                            IconButton(
+                              onPressed: () {
                                 toast("Cloud sync coming soon...");
                               },
-                              icon: Icon(Icons.sync),
+                              icon: Icon(Icons.more_vert),
                             ),
                           ],
                         ),
