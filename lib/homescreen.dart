@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffffffff),
+      backgroundColor: Color(0xffece5dd),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -130,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 0.1,
                         decoration: BoxDecoration(
-                          color: Color(0x1f000000),
+                          color: Color(0xff075e54),
                           shape: BoxShape.rectangle,
                           borderRadius: BorderRadius.zero,
                           border: Border.all(
@@ -148,13 +148,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               onLongPress: () {
                                 delete(1);
                               },
-                              icon: Icon(Icons.arrow_back),
+                              icon: Icon(Icons.arrow_back,color: Colors.white),
                             ),
 
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 8.0),
                               child: CircleAvatar(
                                 radius: 20,
+                                backgroundColor: Colors.blue,
                                 child: Icon(Icons.person, color: Colors.white),
                               ),
                             ),
@@ -167,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontWeight: FontWeight.bold,
                                 fontStyle: FontStyle.normal,
                                 fontSize: 25,
-                                color: Color(0xff000000),
+                                color: Colors.white,
                               ),
                             ),
                             Spacer(),
@@ -175,19 +176,19 @@ class _HomeScreenState extends State<HomeScreen> {
                               onPressed: () {
                                 toast("Video calls coming soon...");
                               },
-                              icon: Icon(Icons.video_camera_front_outlined),
+                              icon: Icon(Icons.video_camera_front_outlined,color: Colors.white),
                             ),
                             IconButton(
                               onPressed: () {
                                 toast("Voice calls coming soon...");
                               },
-                              icon: Icon(Icons.call),
+                              icon: Icon(Icons.call,color: Colors.white),
                             ),
                             IconButton(
                               onPressed: () {
                                 toast("Cloud sync coming soon...");
                               },
-                              icon: Icon(Icons.more_vert),
+                              icon: Icon(Icons.more_vert,color: Colors.white),
                             ),
                           ],
                         ),
@@ -203,6 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       physics: ScrollPhysics(),
                       children: notes.map((item) {
                         return Card(
+                          color: Color(0xffdcf8c6),
                           elevation: 10,
                           child: ListTile(title: Text(item)),
                         );
