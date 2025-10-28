@@ -198,6 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     flex: 1,
                     child: ListView(
+                      reverse: true,
                       scrollDirection: Axis.vertical,
                       padding: EdgeInsets.all(0),
                       shrinkWrap: true,
@@ -208,7 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           elevation: 10,
                           child: ListTile(title: Text(item)),
                         );
-                      }).toList(),
+                      }).toList().reversed.toList(),
                     ),
                   ),
                 ],
