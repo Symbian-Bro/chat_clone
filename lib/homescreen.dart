@@ -207,7 +207,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         return Card(
                           color: Color(0xffdcf8c6),
                           elevation: 10,
-                          child: ListTile(title: Text(item)),
+                          child: ListTile(
+                            title: Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(item),
+                            ),
+                          ),
                         );
                       }).toList().reversed.toList(),
                     ),
