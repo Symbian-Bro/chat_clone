@@ -173,9 +173,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       "R",
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.blue
-                                      )
-                                    )
+                                        color: Colors.blue,
+                                      ),
+                                    ),
                                   ),
                                 ),
 
