@@ -273,8 +273,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Color(0xff000000),
                       ),
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(
+                        enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide.none,
                         ),
                         hintText: "Message",
                         hintStyle: TextStyle(
