@@ -6,10 +6,10 @@ Screenshots :
 <br>
 <tr>
   <td>
-    <img src ="https://github.com/user-attachments/assets/40f1e908-d033-4a34-9fc9-b8bcb8b6d25a" width="400">
+    <img src ="https://github.com/user-attachments/assets/a5259214-130a-410c-ae68-082c138c2033" width="350">
   </td>
   <td>
-    <img src="https://github.com/user-attachments/assets/be30fa39-2393-408d-b2ee-bb81b71a7e77" width="400">
+    <img src="https://github.com/user-attachments/assets/be30fa39-2393-408d-b2ee-bb81b71a7e77" width="350">
   </td>
 </tr>
 
