@@ -308,7 +308,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 IconButton(
                                   onPressed: () {},
-                                  icon: Icon(Icons.attach_file),
+                                  icon: Icon(Icons.attach_file_sharp),
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.currency_rupee_sharp),
                                 ),
                                 IconButton(
                                   onPressed: () {},
@@ -350,10 +354,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             toast("Voice notes coming soon!!");
                           }
                         },
-                        color: Color(0xff50971c),
-                        elevation: 0,
+                        color: Color(0xff0a912b),
+                        elevation: 5,
                         shape: CircleBorder(side: BorderSide(width: 0)),
-                        textColor: Color(0xff000000),
                         child: Icon(Icons.mic, color: Colors.white),
                       ),
                     ),
