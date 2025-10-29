@@ -249,82 +249,67 @@ class _HomeScreenState extends State<HomeScreen> {
               borderRadius: BorderRadius.zero,
               border: Border.all(color: Color(0x4d9e9e9e), width: 1),
             ),*/
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                SizedBox(width: 10),
-                Expanded(
-                  flex: 1,
-                  child: TextField(
-                    controller: txtController,
-                    obscureText: false,
-                    textAlign: TextAlign.start,
-                    maxLines: null,
-                    minLines: null,
-                    expands: true,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 14,
-                      color: Color(0xff000000),
-                    ),
-                    decoration: InputDecoration(
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                        borderSide: BorderSide(
-                          color: Color(0xff000000),
-                          width: 1,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                        borderSide: BorderSide(
-                          color: Color(0xff000000),
-                          width: 1,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                        borderSide: BorderSide(
-                          color: Color(0xff000000),
-                          width: 1,
-                        ),
-                      ),
-                      hintText: "Message",
-                      hintStyle: TextStyle(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 4),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  SizedBox(width: 10),
+                  Expanded(
+                    flex: 1,
+                    child: TextField(
+                      controller: txtController,
+                      obscureText: false,
+                      textAlign: TextAlign.start,
+                      maxLines: null,
+                      minLines: null,
+                      expands: true,
+                      style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
                         fontSize: 14,
                         color: Color(0xff000000),
                       ),
-                      filled: true,
-                      fillColor: Color(0xfff2f2f3),
-                      isDense: false,
-                      contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        hintText: "Message",
+                        hintStyle: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 14,
+                          color: Color(0xff000000),
+                        ),
+                        filled: true,
+                        fillColor: Color(0xfff2f2f3),
+                        isDense: false,
+                        contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                      ),
                     ),
                   ),
-                ),
-                MaterialButton(
-                  onPressed: () {
-                    if (txtController.text.isNotEmpty) {
-                      push_data();
-                    } else {
-                      toast("Voice notes coming soon!!");
-                    }
-                  },
-                  color: Color(0xff075e54),
-                  elevation: 0,
-                  shape: CircleBorder(
-                    side: BorderSide(color: Colors.greenAccent, width: 3),
+                  MaterialButton(
+                    onPressed: () {
+                      if (txtController.text.isNotEmpty) {
+                        push_data();
+                      } else {
+                        toast("Voice notes coming soon!!");
+                      }
+                    },
+                    color: Color(0xff075e54),
+                    elevation: 0,
+                    shape: CircleBorder(
+                      side: BorderSide(color: Colors.greenAccent, width: 3),
+                    ),
+                    //padding: EdgeInsets.all(16),
+                    textColor: Color(0xff000000),
+                    height: MediaQuery.of(context).size.height,
+                    child: Icon(Icons.mic, color: Colors.white),
                   ),
-                  //padding: EdgeInsets.all(16),
-                  textColor: Color(0xff000000),
-                  height: MediaQuery.of(context).size.height,
-                  child: Icon(Icons.mic, color: Colors.white),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
