@@ -252,7 +252,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     color: Color(0xffdcf8c6),
                                     elevation: 1,
                                     child: Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 10.0,
+                                        horizontal: 16.0,
+                                      ),
                                       child: Text(item),
                                     ),
                                   ),
@@ -295,6 +298,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           child: TextField(
                             controller: txtController,
+                            onChanged: (text) {
+                              setState(() {});
+                            },
                             obscureText: false,
                             textAlign: TextAlign.start,
                             maxLines: null,
@@ -369,7 +375,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Color(0xff0a912b),
                           elevation: 5,
                           shape: CircleBorder(side: BorderSide(width: 0)),
-                          child: Icon(Icons.mic, color: Colors.white),
+                          child: Icon(
+                              txtController.text.isNotEmpty ? Icons.send : Icons.mic,
+                              color: Colors.white
+                          ),
                         ),
                       ),
                     ],
