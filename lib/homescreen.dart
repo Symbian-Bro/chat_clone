@@ -104,11 +104,9 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(
-                  "assets/wabg.png"
-                ),
-                fit: BoxFit.fill,
-            )
+              image: AssetImage("assets/wabg.png"),
+              fit: BoxFit.fill,
+            ),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
