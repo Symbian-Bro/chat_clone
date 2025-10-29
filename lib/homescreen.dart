@@ -130,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 0.1,
                         decoration: BoxDecoration(
-                          color: Color(0xff075e54),
+                          color: Colors.white,
                           shape: BoxShape.rectangle,
                           borderRadius: BorderRadius.zero,
                           border: Border.all(
@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               onLongPress: () {
                                 delete(1);
                               },
-                              icon: Icon(Icons.arrow_back, color: Colors.white),
+                              icon: Icon(Icons.arrow_back, color: Colors.black),
                             ),
 
                             Padding(
@@ -157,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               child: CircleAvatar(
                                 radius: 20,
-                                backgroundColor: Colors.blue,
+                                backgroundColor: Colors.redAccent,
                                 child: Icon(Icons.person, color: Colors.white),
                               ),
                             ),
@@ -170,7 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontWeight: FontWeight.bold,
                                 fontStyle: FontStyle.normal,
                                 fontSize: 25,
-                                color: Colors.white,
+                                color: Colors.black,
                               ),
                             ),
                             Spacer(),
@@ -180,20 +180,20 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                               icon: Icon(
                                 Icons.video_camera_front_outlined,
-                                color: Colors.white,
+                                color: Colors.black,
                               ),
                             ),
                             IconButton(
                               onPressed: () {
                                 toast("Voice calls coming soon...");
                               },
-                              icon: Icon(Icons.call, color: Colors.white),
+                              icon: Icon(Icons.call, color: Colors.black),
                             ),
                             IconButton(
                               onPressed: () {
                                 toast("Cloud sync coming soon...");
                               },
-                              icon: Icon(Icons.more_vert, color: Colors.white),
+                              icon: Icon(Icons.more_vert, color: Colors.black),
                             ),
                           ],
                         ),
@@ -303,10 +303,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         toast("Voice notes coming soon!!");
                       }
                     },
-                    color: Color(0xff075e54),
+                    color: Color(0xff50971c),
                     elevation: 0,
                     shape: CircleBorder(
-                      side: BorderSide(color: Colors.greenAccent, width: 3),
+                      side: BorderSide(width: 0),
                     ),
                     //padding: EdgeInsets.all(16),
                     textColor: Color(0xff000000),
