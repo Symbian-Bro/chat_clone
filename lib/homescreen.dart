@@ -299,8 +299,23 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Color(0xff000000),
                           ),
                           decoration: InputDecoration(
-                            prefixIcon: IconButton(onPressed: (){}, icon: Icon(Icons.emoji_emotions_outlined)),
-                            suffixIcon: IconButton(onPressed: (){}, icon: Icon(Icons.attach_file)),
+                            prefixIcon: IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.emoji_emotions_outlined),
+                            ),
+                            suffixIcon: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.attach_file),
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.camera_alt_outlined),
+                                ),
+                              ],
+                            ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                               borderSide: BorderSide.none,
