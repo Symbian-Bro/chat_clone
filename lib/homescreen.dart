@@ -144,73 +144,79 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: 1,
                             ),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  delete(0);
-                                },
-                                onLongPress: () {
-                                  delete(1);
-                                },
-                                icon: Icon(
-                                  Icons.arrow_back,
-                                  color: Colors.black,
-                                ),
-                              ),
-
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0,
-                                ),
-                                child: CircleAvatar(
-                                  radius: 20,
-                                  backgroundColor: Colors.redAccent,
-                                  child: Icon(
-                                    Icons.person,
-                                    color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 4),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    delete(0);
+                                  },
+                                  onLongPress: () {
+                                    delete(1);
+                                  },
+                                  icon: Icon(
+                                    Icons.arrow_back,
+                                    color: Colors.black,
                                   ),
                                 ),
-                              ),
 
-                              Text(
-                                "Recipient",
-                                textAlign: TextAlign.start,
-                                overflow: TextOverflow.clip,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: 25,
-                                  color: Colors.black,
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8.0,
+                                  ),
+                                  child: CircleAvatar(
+                                    radius: 20,
+                                    backgroundColor: Color(0xfff3ccd6),
+                                    child: Text(
+                                      "R",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.blue
+                                      )
+                                    )
+                                  ),
                                 ),
-                              ),
-                              Spacer(),
-                              IconButton(
-                                onPressed: () {
-                                  toast("Video calls coming soon...");
-                                },
-                                icon: Icon(
-                                  Icons.video_camera_front_outlined,
-                                  color: Colors.black,
+
+                                Text(
+                                  "+91 93456 2552",
+                                  textAlign: TextAlign.start,
+                                  overflow: TextOverflow.clip,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                  ),
                                 ),
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  toast("Voice calls coming soon...");
-                                },
-                                icon: Icon(Icons.call, color: Colors.black),
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  toast("Cloud sync coming soon...");
-                                },
-                                icon: Icon(
-                                  Icons.more_vert,
-                                  color: Colors.black,
+                                Spacer(),
+                                IconButton(
+                                  onPressed: () {
+                                    toast("Video calls coming soon...");
+                                  },
+                                  icon: Icon(
+                                    Icons.video_camera_front_outlined,
+                                    color: Colors.black,
+                                  ),
                                 ),
-                              ),
-                            ],
+                                IconButton(
+                                  onPressed: () {
+                                    toast("Voice calls coming soon...");
+                                  },
+                                  icon: Icon(Icons.call, color: Colors.black),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    toast("Cloud sync coming soon...");
+                                  },
+                                  icon: Icon(
+                                    Icons.more_vert,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],
