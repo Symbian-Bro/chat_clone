@@ -234,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: EdgeInsets.all(0),
             padding: EdgeInsets.all(0),
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.1,
+            height: MediaQuery.of(context).size.height * 0.07,
             decoration: BoxDecoration(
               color: Color(0x1f000000),
               shape: BoxShape.rectangle,
@@ -313,7 +313,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: EdgeInsets.all(16),
                   textColor: Color(0xff000000),
                   height: MediaQuery.of(context).size.height,
-                  minWidth: 140,
                   child: Icon(Icons.mic, color: Colors.white),
                 ),
               ],
