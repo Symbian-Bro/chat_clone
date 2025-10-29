@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -93,231 +94,244 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xffece5dd),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Expanded(
-            child: Container(
-              alignment: Alignment.topCenter,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+      child: Scaffold(
+        backgroundColor: Color(0xffece5dd),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Expanded(
+              child: Container(
+                alignment: Alignment.topCenter,
+                margin: EdgeInsets.all(0),
+                padding: EdgeInsets.all(0),
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.9,
+                /*decoration: BoxDecoration(
+                  color: Color(0x1f000000),
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.zero,
+                  border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+                ),*/
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.all(0),
+                          padding: EdgeInsets.fromLTRB(0, 35, 0, 0),
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * 0.1,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.zero,
+                            border: Border.all(
+                              color: Color(0x4d9e9e9e),
+                              width: 1,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  delete(0);
+                                },
+                                onLongPress: () {
+                                  delete(1);
+                                },
+                                icon: Icon(
+                                  Icons.arrow_back,
+                                  color: Colors.black,
+                                ),
+                              ),
+
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8.0,
+                                ),
+                                child: CircleAvatar(
+                                  radius: 20,
+                                  backgroundColor: Colors.redAccent,
+                                  child: Icon(
+                                    Icons.person,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+
+                              Text(
+                                "Recipient",
+                                textAlign: TextAlign.start,
+                                overflow: TextOverflow.clip,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 25,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              Spacer(),
+                              IconButton(
+                                onPressed: () {
+                                  toast("Video calls coming soon...");
+                                },
+                                icon: Icon(
+                                  Icons.video_camera_front_outlined,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  toast("Voice calls coming soon...");
+                                },
+                                icon: Icon(Icons.call, color: Colors.black),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  toast("Cloud sync coming soon...");
+                                },
+                                icon: Icon(
+                                  Icons.more_vert,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: ListView(
+                        reverse: true,
+                        scrollDirection: Axis.vertical,
+                        padding: EdgeInsets.all(0),
+                        shrinkWrap: true,
+                        physics: ScrollPhysics(),
+                        children: notes
+                            .map((item) {
+                              return Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.zero,
+                                    topRight: Radius.circular(10),
+                                    bottomLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(10),
+                                  ),
+                                ),
+                                color: Color(0xffdcf8c6),
+                                elevation: 1,
+                                child: ListTile(
+                                  title: Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Text(item),
+                                  ),
+                                ),
+                              );
+                            })
+                            .toList()
+                            .reversed
+                            .toList(),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
               margin: EdgeInsets.all(0),
               padding: EdgeInsets.all(0),
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.9,
+              height: MediaQuery.of(context).size.height * 0.07,
               /*decoration: BoxDecoration(
                 color: Color(0x1f000000),
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.zero,
                 border: Border.all(color: Color(0x4d9e9e9e), width: 1),
               ),*/
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.all(0),
-                        padding: EdgeInsets.fromLTRB(0, 35, 0, 0),
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.1,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.zero,
-                          border: Border.all(
-                            color: Color(0x4d9e9e9e),
-                            width: 1,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                delete(0);
-                              },
-                              onLongPress: () {
-                                delete(1);
-                              },
-                              icon: Icon(Icons.arrow_back, color: Colors.black),
-                            ),
-
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8.0,
-                              ),
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Colors.redAccent,
-                                child: Icon(Icons.person, color: Colors.white),
-                              ),
-                            ),
-
-                            Text(
-                              "Recipient",
-                              textAlign: TextAlign.start,
-                              overflow: TextOverflow.clip,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontStyle: FontStyle.normal,
-                                fontSize: 25,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Spacer(),
-                            IconButton(
-                              onPressed: () {
-                                toast("Video calls coming soon...");
-                              },
-                              icon: Icon(
-                                Icons.video_camera_front_outlined,
-                                color: Colors.black,
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                toast("Voice calls coming soon...");
-                              },
-                              icon: Icon(Icons.call, color: Colors.black),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                toast("Cloud sync coming soon...");
-                              },
-                              icon: Icon(Icons.more_vert, color: Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: ListView(
-                      reverse: true,
-                      scrollDirection: Axis.vertical,
-                      padding: EdgeInsets.all(0),
-                      shrinkWrap: true,
-                      physics: ScrollPhysics(),
-                      children: notes
-                          .map((item) {
-                            return Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.zero,
-                                  topRight: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10),
-                                  bottomRight: Radius.circular(10),
-                                ),
-                              ),
-                              color: Color(0xffdcf8c6),
-                              elevation: 1,
-                              child: ListTile(
-                                title: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(item),
-                                ),
-                              ),
-                            );
-                          })
-                          .toList()
-                          .reversed
-                          .toList(),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.all(0),
-            padding: EdgeInsets.all(0),
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.07,
-            /*decoration: BoxDecoration(
-              color: Color(0x1f000000),
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.zero,
-              border: Border.all(color: Color(0x4d9e9e9e), width: 1),
-            ),*/
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 4),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  SizedBox(width: 10),
-                  Expanded(
-                    flex: 1,
-                    child: TextField(
-                      controller: txtController,
-                      obscureText: false,
-                      textAlign: TextAlign.start,
-                      maxLines: null,
-                      minLines: null,
-                      expands: true,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 14,
-                        color: Color(0xff000000),
-                      ),
-                      decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide.none,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide.none,
-                        ),
-                        hintText: "Message",
-                        hintStyle: TextStyle(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 4),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SizedBox(width: 10),
+                    Expanded(
+                      flex: 1,
+                      child: TextField(
+                        controller: txtController,
+                        obscureText: false,
+                        textAlign: TextAlign.start,
+                        maxLines: null,
+                        minLines: null,
+                        expands: true,
+                        style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
                           fontSize: 14,
                           color: Color(0xff000000),
                         ),
-                        filled: true,
-                        fillColor: Color(0xfff2f2f3),
-                        isDense: false,
-                        contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: BorderSide.none,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: BorderSide.none,
+                          ),
+                          hintText: "Message",
+                          hintStyle: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                            fontSize: 14,
+                            color: Color(0xff000000),
+                          ),
+                          filled: true,
+                          fillColor: Color(0xfff2f2f3),
+                          isDense: false,
+                          contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                        ),
                       ),
                     ),
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      if (txtController.text.isNotEmpty) {
-                        push_data();
-                      } else {
-                        toast("Voice notes coming soon!!");
-                      }
-                    },
-                    color: Color(0xff50971c),
-                    elevation: 0,
-                    shape: CircleBorder(
-                      side: BorderSide(width: 0),
+                    MaterialButton(
+                      onPressed: () {
+                        if (txtController.text.isNotEmpty) {
+                          push_data();
+                        } else {
+                          toast("Voice notes coming soon!!");
+                        }
+                      },
+                      color: Color(0xff50971c),
+                      elevation: 0,
+                      shape: CircleBorder(side: BorderSide(width: 0)),
+                      //padding: EdgeInsets.all(16),
+                      textColor: Color(0xff000000),
+                      height: MediaQuery.of(context).size.height,
+                      child: Icon(Icons.mic, color: Colors.white),
                     ),
-                    //padding: EdgeInsets.all(16),
-                    textColor: Color(0xff000000),
-                    height: MediaQuery.of(context).size.height,
-                    child: Icon(Icons.mic, color: Colors.white),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
