@@ -107,12 +107,12 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.all(0),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.9,
-              decoration: BoxDecoration(
+              /*decoration: BoxDecoration(
                 color: Color(0x1f000000),
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.zero,
                 border: Border.all(color: Color(0x4d9e9e9e), width: 1),
-              ),
+              ),*/
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -243,12 +243,12 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(0),
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.07,
-            decoration: BoxDecoration(
+            /*decoration: BoxDecoration(
               color: Color(0x1f000000),
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.zero,
               border: Border.all(color: Color(0x4d9e9e9e), width: 1),
-            ),
+            ),*/
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
