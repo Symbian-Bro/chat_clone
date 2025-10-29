@@ -339,21 +339,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    MaterialButton(
-                      onPressed: () {
-                        if (txtController.text.isNotEmpty) {
-                          push_data();
-                        } else {
-                          toast("Voice notes coming soon!!");
-                        }
-                      },
-                      color: Color(0xff50971c),
-                      elevation: 0,
-                      shape: CircleBorder(side: BorderSide(width: 0)),
-                      //padding: EdgeInsets.all(16),
-                      textColor: Color(0xff000000),
-                      height: MediaQuery.of(context).size.height,
-                      child: Icon(Icons.mic, color: Colors.white),
+                    SizedBox(
+                      height: 72,
+                      width: 72,
+                      child: MaterialButton(
+                        onPressed: () {
+                          if (txtController.text.isNotEmpty) {
+                            push_data();
+                          } else {
+                            toast("Voice notes coming soon!!");
+                          }
+                        },
+                        color: Color(0xff50971c),
+                        elevation: 0,
+                        shape: CircleBorder(side: BorderSide(width: 0)),
+                        textColor: Color(0xff000000),
+                        child: Icon(Icons.mic, color: Colors.white),
+                      ),
                     ),
                   ],
                 ),
