@@ -254,6 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
+                SizedBox(width: 10),
                 Expanded(
                   flex: 1,
                   child: TextField(
@@ -316,9 +317,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Color(0xff075e54),
                   elevation: 0,
                   shape: CircleBorder(
-                    side: BorderSide(color: Colors.greenAccent, width: 1),
+                    side: BorderSide(color: Colors.greenAccent, width: 3),
                   ),
-                  padding: EdgeInsets.all(16),
+                  //padding: EdgeInsets.all(16),
                   textColor: Color(0xff000000),
                   height: MediaQuery.of(context).size.height,
                   child: Icon(Icons.mic, color: Colors.white),
