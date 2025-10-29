@@ -238,20 +238,21 @@ class _HomeScreenState extends State<HomeScreen> {
                           physics: ScrollPhysics(),
                           children: notes
                               .map((item) {
-                                return Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.zero,
-                                      topRight: Radius.circular(10),
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10),
+                                return Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.zero,
+                                        topRight: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
+                                      ),
                                     ),
-                                  ),
-                                  color: Color(0xffdcf8c6),
-                                  elevation: 1,
-                                  child: ListTile(
-                                    title: Align(
-                                      alignment: Alignment.centerRight,
+                                    color: Color(0xffdcf8c6),
+                                    elevation: 1,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
                                       child: Text(item),
                                     ),
                                   ),
