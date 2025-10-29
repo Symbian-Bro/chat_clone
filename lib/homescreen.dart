@@ -280,39 +280,47 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(width: 10),
                     Expanded(
                       flex: 1,
-                      child: TextField(
-                        controller: txtController,
-                        obscureText: false,
-                        textAlign: TextAlign.start,
-                        maxLines: null,
-                        minLines: null,
-                        expands: true,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                          fontSize: 14,
-                          color: Color(0xff000000),
+                      child: Card(
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
                         ),
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            borderSide: BorderSide.none,
-                          ),
-                          hintText: "Message",
-                          hintStyle: TextStyle(
+                        child: TextField(
+                          controller: txtController,
+                          obscureText: false,
+                          textAlign: TextAlign.start,
+                          maxLines: null,
+                          minLines: null,
+                          expands: true,
+                          style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.normal,
                             fontSize: 14,
                             color: Color(0xff000000),
                           ),
-                          filled: true,
-                          fillColor: Color(0xfff2f2f3),
-                          isDense: false,
-                          contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                          decoration: InputDecoration(
+                            prefixIcon: IconButton(onPressed: (){}, icon: Icon(Icons.emoji_emotions_outlined)),
+                            suffixIcon: IconButton(onPressed: (){}, icon: Icon(Icons.attach_file)),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                              borderSide: BorderSide.none,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                              borderSide: BorderSide.none,
+                            ),
+                            hintText: "Message",
+                            hintStyle: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.normal,
+                              fontSize: 14,
+                              color: Color(0xff000000),
+                            ),
+                            filled: true,
+                            fillColor: Color(0xfff2f2f3),
+                            isDense: false,
+                            contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                          ),
                         ),
                       ),
                     ),
