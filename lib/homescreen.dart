@@ -211,6 +211,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: notes
                           .map((item) {
                             return Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.zero,
+                                  topRight: Radius.circular(10),
+                                  bottomLeft: Radius.circular(10),
+                                  bottomRight: Radius.circular(10),
+                                ),
+                              ),
                               color: Color(0xffdcf8c6),
                               elevation: 1,
                               child: ListTile(
