@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           title: Text("⚠️ Confirm action ⚠️", textAlign: TextAlign.center),
           content: Text(
-            "Are you sure you want to delete all the\n $size notes?",
+            "Are you sure you want to delete all the\n $size messages?",
             textAlign: TextAlign.center,
           ),
           actions: [
@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     setState(() {
                       notes.clear();
-                      toast("All notes deleted");
+                      toast("All messages have been deleted");
                       Navigator.of(context).pop();
                     });
                   },
@@ -80,13 +80,13 @@ class _HomeScreenState extends State<HomeScreen> {
         if (notes.isNotEmpty) {
           notes.removeLast();
         } else {
-          toast("No notes to delete");
+          toast("Chat is locked!!");
         }
       } else {
         if (notes.isNotEmpty) {
           dialog();
         } else {
-          toast("Long press to delete all the notes");
+          toast("Long press to delete all the messages");
         }
       }
     });
@@ -170,7 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     radius: 20,
                                     backgroundColor: Color(0xfff3ccd6),
                                     child: Text(
-                                      "R",
+                                      "S",
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.blue,
@@ -180,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
 
                                 Text(
-                                  "+91 93456 2552",
+                                  "Soorya Kiran",
                                   textAlign: TextAlign.start,
                                   overflow: TextOverflow.clip,
                                   style: TextStyle(
@@ -311,11 +311,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                   icon: Icon(Icons.attach_file_sharp),
                                 ),
                                 IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    toast("Not enough balance!!...");
+                                  },
                                   icon: Icon(Icons.currency_rupee_sharp),
                                 ),
                                 IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    toast("Camera driver faulty!!...");
+                                  },
                                   icon: Icon(Icons.camera_alt_outlined),
                                 ),
                               ],
