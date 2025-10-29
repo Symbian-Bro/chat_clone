@@ -148,11 +148,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               onLongPress: () {
                                 delete(1);
                               },
-                              icon: Icon(Icons.arrow_back,color: Colors.white),
+                              icon: Icon(Icons.arrow_back, color: Colors.white),
                             ),
 
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0,
+                              ),
                               child: CircleAvatar(
                                 radius: 20,
                                 backgroundColor: Colors.blue,
@@ -176,19 +178,22 @@ class _HomeScreenState extends State<HomeScreen> {
                               onPressed: () {
                                 toast("Video calls coming soon...");
                               },
-                              icon: Icon(Icons.video_camera_front_outlined,color: Colors.white),
+                              icon: Icon(
+                                Icons.video_camera_front_outlined,
+                                color: Colors.white,
+                              ),
                             ),
                             IconButton(
                               onPressed: () {
                                 toast("Voice calls coming soon...");
                               },
-                              icon: Icon(Icons.call,color: Colors.white),
+                              icon: Icon(Icons.call, color: Colors.white),
                             ),
                             IconButton(
                               onPressed: () {
                                 toast("Cloud sync coming soon...");
                               },
-                              icon: Icon(Icons.more_vert,color: Colors.white),
+                              icon: Icon(Icons.more_vert, color: Colors.white),
                             ),
                           ],
                         ),
@@ -203,18 +208,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: EdgeInsets.all(0),
                       shrinkWrap: true,
                       physics: ScrollPhysics(),
-                      children: notes.map((item) {
-                        return Card(
-                          color: Color(0xffdcf8c6),
-                          elevation: 1,
-                          child: ListTile(
-                            title: Align(
-                              alignment: Alignment.centerRight,
-                              child: Text(item),
-                            ),
-                          ),
-                        );
-                      }).toList().reversed.toList(),
+                      children: notes
+                          .map((item) {
+                            return Card(
+                              color: Color(0xffdcf8c6),
+                              elevation: 1,
+                              child: ListTile(
+                                title: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Text(item),
+                                ),
+                              ),
+                            );
+                          })
+                          .toList()
+                          .reversed
+                          .toList(),
                     ),
                   ),
                 ],
@@ -299,19 +308,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Color(0xff075e54),
                   elevation: 0,
                   shape: CircleBorder(
-                    side: BorderSide(
-                      color: Colors.greenAccent,
-                      width: 1,
-                    ),
+                    side: BorderSide(color: Colors.greenAccent, width: 1),
                   ),
                   padding: EdgeInsets.all(16),
                   textColor: Color(0xff000000),
                   height: MediaQuery.of(context).size.height,
                   minWidth: 140,
-                  child: Icon(
-                    Icons.mic,
-                    color: Colors.white,
-                  )
+                  child: Icon(Icons.mic, color: Colors.white),
                 ),
               ],
             ),
