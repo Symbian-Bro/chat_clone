@@ -71,7 +71,16 @@ class _HomeScreenState extends State<HomeScreen> {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: [
-        'pdf', 'doc', 'docx', 'txt', 'rtf', 'odt', 'xls', 'xlsx', 'ppt', 'pptx',
+        'pdf',
+        'doc',
+        'docx',
+        'txt',
+        'rtf',
+        'odt',
+        'xls',
+        'xlsx',
+        'ppt',
+        'pptx',
       ],
     );
 
@@ -102,13 +111,15 @@ class _HomeScreenState extends State<HomeScreen> {
       }
 
       setState(() {
-        notes.add(Message(
-          text: fileName,
-          isFile: true,
-          filePath: filePath,
-          thumbnailData: thumbnail,
-          fileSize: fileSize,
-        ));
+        notes.add(
+          Message(
+            text: fileName,
+            isFile: true,
+            filePath: filePath,
+            thumbnailData: thumbnail,
+            fileSize: fileSize,
+          ),
+        );
       });
     } else {
       toast("File picking cancelled");
@@ -314,85 +325,89 @@ class _HomeScreenState extends State<HomeScreen> {
                           physics: ScrollPhysics(),
                           children: notes
                               .map((item) {
-                            return Align(
-                              alignment: Alignment.centerRight,
-                              child: InkWell(
-                                onTap: () {
-                                  if (item.isFile &&
-                                      item.filePath != null) {
-                                    OpenFilex.open(item.filePath!);
-                                  }
-                                },
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.zero,
-                                      topRight: Radius.circular(10),
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10),
-                                    ),
-                                  ),
-                                  color: Color(0xffdcf8c6),
-                                  elevation: 1,
-                                  clipBehavior: Clip.antiAlias,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
+                                return Align(
+                                  alignment: Alignment.centerRight,
+                                  child: InkWell(
+                                    onTap: () {
                                       if (item.isFile &&
-                                          item.thumbnailData != null)
-                                        Image.memory(
-                                          item.thumbnailData!,
-                                          width: double.infinity,
-                                          height: 150,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          vertical: 10.0,
-                                          horizontal: 16.0,
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              item.text,
-                                              style: TextStyle(
-                                                color: item.isFile
-                                                    ? Colors.blue.shade700
-                                                    : Colors.black,
-                                                decoration: item.isFile
-                                                    ? TextDecoration
-                                                    .underline
-                                                    : TextDecoration.none,
-                                              ),
-                                            ),
-                                            if (item.isFile &&
-                                                item.fileSize != null)
-                                              Padding(
-                                                padding:
-                                                const EdgeInsets.only(
-                                                    top: 4.0),
-                                                child: Text(
-                                                  _formatBytes(
-                                                      item.fileSize!, 2),
-                                                  style: TextStyle(
-                                                    color: Colors
-                                                        .grey.shade700,
-                                                    fontSize: 12,
-                                                  ),
-                                                ),
-                                              ),
-                                          ],
+                                          item.filePath != null) {
+                                        OpenFilex.open(item.filePath!);
+                                      }
+                                    },
+                                    child: Card(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.zero,
+                                          topRight: Radius.circular(10),
+                                          bottomLeft: Radius.circular(10),
+                                          bottomRight: Radius.circular(10),
                                         ),
                                       ),
-                                    ],
+                                      color: Color(0xffdcf8c6),
+                                      elevation: 1,
+                                      clipBehavior: Clip.antiAlias,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          if (item.isFile &&
+                                              item.thumbnailData != null)
+                                            Image.memory(
+                                              item.thumbnailData!,
+                                              width: double.infinity,
+                                              height: 150,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 10.0,
+                                              horizontal: 16.0,
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  item.text,
+                                                  style: TextStyle(
+                                                    color: item.isFile
+                                                        ? Colors.blue.shade700
+                                                        : Colors.black,
+                                                    decoration: item.isFile
+                                                        ? TextDecoration
+                                                              .underline
+                                                        : TextDecoration.none,
+                                                  ),
+                                                ),
+                                                if (item.isFile &&
+                                                    item.fileSize != null)
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                          top: 4.0,
+                                                        ),
+                                                    child: Text(
+                                                      _formatBytes(
+                                                        item.fileSize!,
+                                                        2,
+                                                      ),
+                                                      style: TextStyle(
+                                                        color: Colors
+                                                            .grey
+                                                            .shade700,
+                                                        fontSize: 12,
+                                                      ),
+                                                    ),
+                                                  ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            );
-                          })
+                                );
+                              })
                               .toList()
                               .reversed
                               .toList(),
