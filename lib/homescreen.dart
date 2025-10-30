@@ -105,7 +105,6 @@ class _HomeScreenState extends State<HomeScreen> {
           await page.close();
           await doc.close();
         } catch (e) {
-          print("Error generating PDF thumbnail: $e");
           thumbnail = null;
         }
       }
@@ -333,83 +332,88 @@ class _HomeScreenState extends State<HomeScreen> {
                                         OpenFilex.open(item.filePath!);
                                       }
                                     },
-                                    child: Card(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.zero,
-                                          topRight: Radius.circular(10),
-                                          bottomLeft: Radius.circular(10),
-                                          bottomRight: Radius.circular(10),
-                                        ),
+                                    child: Container(
+                                      constraints: BoxConstraints(
+                                        maxWidth: MediaQuery.of(context).size.width * (item.isFile ? 0.7 : 0.9),
                                       ),
-                                      color: Color(0xffdcf8c6),
-                                      elevation: 1,
-                                      clipBehavior: Clip.antiAlias,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          if (item.isFile &&
-                                              item.thumbnailData != null)
-                                            Container(
-                                              width:
-                                                  MediaQuery.of(
-                                                    context,
-                                                  ).size.width *
-                                                  0.7,
-                                              height: 150,
-                                              child: Image.memory(
-                                                item.thumbnailData!,
-                                                width: double.infinity,
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.zero,
+                                            topRight: Radius.circular(10),
+                                            bottomLeft: Radius.circular(10),
+                                            bottomRight: Radius.circular(10),
+                                          ),
+                                        ),
+                                        color: Color(0xffdcf8c6),
+                                        elevation: 1,
+                                        clipBehavior: Clip.antiAlias,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            if (item.isFile &&
+                                                item.thumbnailData != null)
+                                              Container(
+                                                width:
+                                                    MediaQuery.of(
+                                                      context,
+                                                    ).size.width *
+                                                    0.7,
                                                 height: 150,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              vertical: 10.0,
-                                              horizontal: 16.0,
-                                            ),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  item.text,
-                                                  style: TextStyle(
-                                                    color: item.isFile
-                                                        ? Colors.blue.shade700
-                                                        : Colors.black,
-                                                    decoration: item.isFile
-                                                        ? TextDecoration
-                                                              .underline
-                                                        : TextDecoration.none,
-                                                  ),
+                                                child: Image.memory(
+                                                  item.thumbnailData!,
+                                                  width: double.infinity,
+                                                  height: 150,
+                                                  fit: BoxFit.cover,
                                                 ),
-                                                if (item.isFile &&
-                                                    item.fileSize != null)
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                          top: 4.0,
-                                                        ),
-                                                    child: Text(
-                                                      _formatBytes(
-                                                        item.fileSize!,
-                                                        2,
-                                                      ),
-                                                      style: TextStyle(
-                                                        color: Colors
-                                                            .grey
-                                                            .shade700,
-                                                        fontSize: 12,
-                                                      ),
+                                              ),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                vertical: 10.0,
+                                                horizontal: 16.0,
+                                              ),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    item.text,
+                                                    style: TextStyle(
+                                                      color: item.isFile
+                                                          ? Colors.blue.shade700
+                                                          : Colors.black,
+                                                      decoration: item.isFile
+                                                          ? TextDecoration
+                                                                .underline
+                                                          : TextDecoration.none,
                                                     ),
                                                   ),
-                                              ],
+                                                  if (item.isFile &&
+                                                      item.fileSize != null)
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                            top: 4.0,
+                                                          ),
+                                                      child: Text(
+                                                        _formatBytes(
+                                                          item.fileSize!,
+                                                          2,
+                                                        ),
+                                                        style: TextStyle(
+                                                          color: Colors
+                                                              .grey
+                                                              .shade700,
+                                                          fontSize: 12,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
