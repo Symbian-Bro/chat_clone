@@ -127,7 +127,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void dialog() {
-    int size = notes.length;
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -352,11 +351,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                         children: [
                                           if (item.isFile &&
                                               item.thumbnailData != null)
-                                            Image.memory(
-                                              item.thumbnailData!,
-                                              width: double.infinity,
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.7,
                                               height: 150,
-                                              fit: BoxFit.cover,
+                                              child: Image.memory(
+                                                item.thumbnailData!,
+                                                width: double.infinity,
+                                                height: 150,
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
                                           Padding(
                                             padding: const EdgeInsets.symmetric(
