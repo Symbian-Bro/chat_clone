@@ -304,7 +304,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                           vertical: 10.0,
                                           horizontal: 16.0,
                                         ),
-                                        child: Text(item.text),
+                                        child: Text(
+                                          item.text,
+                                          style: TextStyle(
+                                            color: item.isFile
+                                                ? Colors.blue.shade700
+                                                : Colors.black,
+                                            decoration: item.isFile
+                                                ? TextDecoration.underline
+                                                : TextDecoration.none,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
