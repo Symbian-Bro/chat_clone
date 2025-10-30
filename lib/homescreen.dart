@@ -281,23 +281,31 @@ class _HomeScreenState extends State<HomeScreen> {
                               .map((item) {
                                 return Align(
                                   alignment: Alignment.centerRight,
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.zero,
-                                        topRight: Radius.circular(10),
-                                        bottomLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10),
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (item.isFile &&
+                                          item.filePath != null) {
+                                        OpenFilex.open(item.filePath!);
+                                      }
+                                    },
+                                    child: Card(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.zero,
+                                          topRight: Radius.circular(10),
+                                          bottomLeft: Radius.circular(10),
+                                          bottomRight: Radius.circular(10),
+                                        ),
                                       ),
-                                    ),
-                                    color: Color(0xffdcf8c6),
-                                    elevation: 1,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 10.0,
-                                        horizontal: 16.0,
+                                      color: Color(0xffdcf8c6),
+                                      elevation: 1,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 10.0,
+                                          horizontal: 16.0,
+                                        ),
+                                        child: Text(item.text),
                                       ),
-                                      child: Text(item.text),
                                     ),
                                   ),
                                 );
