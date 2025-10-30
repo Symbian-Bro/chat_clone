@@ -2,13 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:open_filex/open_filex.dart';
+import 'dart:typed_data';
+import 'package:pdfx/pdfx.dart';
+import 'dart:math';
 
 class Message {
   final String text;
   final bool isFile;
   final String? filePath;
+  final Uint8List? thumbnailData;
+  final int? fileSize;
 
-  Message({required this.text, this.isFile = false, this.filePath});
+  Message({
+    required this.text,
+    this.isFile = false,
+    this.filePath,
+    this.thumbnailData,
+    this.fileSize,
+  });
 }
 
 class HomeScreen extends StatefulWidget {
@@ -29,11 +40,24 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  String _formatBytes(int bytes, int decimals) {
+    if (bytes <= 0) return "0 B";
+    const suffixes = ["B", "KB", "MB", "GB", "TB"];
+    var i = (log(bytes) / log(1024)).floor();
+    return '${(bytes / pow(1024, i)).toStringAsFixed(decimals)} ${suffixes[i]}';
+  }
+
   void push_data() {
     setState(() {
       if (txtController.text.isNotEmpty) {
         notes.add(
-          Message(text: txtController.text, isFile: false, filePath: null),
+          Message(
+            text: txtController.text,
+            isFile: false,
+            filePath: null,
+            thumbnailData: null,
+            fileSize: null,
+          ),
         );
         txtController.clear();
       } else {
@@ -47,25 +71,44 @@ class _HomeScreenState extends State<HomeScreen> {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: [
-        'pdf',
-        'doc',
-        'docx',
-        'txt',
-        'rtf',
-        'odt',
-        'xls',
-        'xlsx',
-        'ppt',
-        'pptx',
+        'pdf', 'doc', 'docx', 'txt', 'rtf', 'odt', 'xls', 'xlsx', 'ppt', 'pptx',
       ],
     );
 
     if (result != null && result.files.single.path != null) {
       String fileName = result.files.single.name;
       String? filePath = result.files.single.path;
+      int? fileSize = result.files.single.size;
+      Uint8List? thumbnail;
+
+      if (filePath != null && fileName.toLowerCase().endsWith('.pdf')) {
+        try {
+          final doc = await PdfDocument.openFile(filePath);
+          final page = await doc.getPage(1);
+          final pageImage = await page.render(
+            width: 200,
+            height: 200,
+            format: PdfPageImageFormat.jpeg,
+            quality: 75,
+          );
+          thumbnail = pageImage?.bytes;
+
+          await page.close();
+          await doc.close();
+        } catch (e) {
+          print("Error generating PDF thumbnail: $e");
+          thumbnail = null;
+        }
+      }
 
       setState(() {
-        notes.add(Message(text: fileName, isFile: true, filePath: filePath));
+        notes.add(Message(
+          text: fileName,
+          isFile: true,
+          filePath: filePath,
+          thumbnailData: thumbnail,
+          fileSize: fileSize,
+        ));
       });
     } else {
       toast("File picking cancelled");
@@ -161,12 +204,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: EdgeInsets.all(0),
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height * 0.9,
-                  /*decoration: BoxDecoration(
-                    color: Color(0x1f000000),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.zero,
-                    border: Border.all(color: Color(0x4d9e9e9e), width: 1),
-                  ),*/
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -209,7 +246,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                       color: Colors.black,
                                     ),
                                   ),
-
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
                                       horizontal: 8.0,
@@ -226,7 +262,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                   ),
-
                                   Text(
                                     "Soorya Kiran",
                                     textAlign: TextAlign.start,
@@ -279,47 +314,85 @@ class _HomeScreenState extends State<HomeScreen> {
                           physics: ScrollPhysics(),
                           children: notes
                               .map((item) {
-                                return Align(
-                                  alignment: Alignment.centerRight,
-                                  child: InkWell(
-                                    onTap: () {
+                            return Align(
+                              alignment: Alignment.centerRight,
+                              child: InkWell(
+                                onTap: () {
+                                  if (item.isFile &&
+                                      item.filePath != null) {
+                                    OpenFilex.open(item.filePath!);
+                                  }
+                                },
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.zero,
+                                      topRight: Radius.circular(10),
+                                      bottomLeft: Radius.circular(10),
+                                      bottomRight: Radius.circular(10),
+                                    ),
+                                  ),
+                                  color: Color(0xffdcf8c6),
+                                  elevation: 1,
+                                  clipBehavior: Clip.antiAlias,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
                                       if (item.isFile &&
-                                          item.filePath != null) {
-                                        OpenFilex.open(item.filePath!);
-                                      }
-                                    },
-                                    child: Card(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.zero,
-                                          topRight: Radius.circular(10),
-                                          bottomLeft: Radius.circular(10),
-                                          bottomRight: Radius.circular(10),
+                                          item.thumbnailData != null)
+                                        Image.memory(
+                                          item.thumbnailData!,
+                                          width: double.infinity,
+                                          height: 150,
+                                          fit: BoxFit.cover,
                                         ),
-                                      ),
-                                      color: Color(0xffdcf8c6),
-                                      elevation: 1,
-                                      child: Padding(
+                                      Padding(
                                         padding: const EdgeInsets.symmetric(
                                           vertical: 10.0,
                                           horizontal: 16.0,
                                         ),
-                                        child: Text(
-                                          item.text,
-                                          style: TextStyle(
-                                            color: item.isFile
-                                                ? Colors.blue.shade700
-                                                : Colors.black,
-                                            decoration: item.isFile
-                                                ? TextDecoration.underline
-                                                : TextDecoration.none,
-                                          ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              item.text,
+                                              style: TextStyle(
+                                                color: item.isFile
+                                                    ? Colors.blue.shade700
+                                                    : Colors.black,
+                                                decoration: item.isFile
+                                                    ? TextDecoration
+                                                    .underline
+                                                    : TextDecoration.none,
+                                              ),
+                                            ),
+                                            if (item.isFile &&
+                                                item.fileSize != null)
+                                              Padding(
+                                                padding:
+                                                const EdgeInsets.only(
+                                                    top: 4.0),
+                                                child: Text(
+                                                  _formatBytes(
+                                                      item.fileSize!, 2),
+                                                  style: TextStyle(
+                                                    color: Colors
+                                                        .grey.shade700,
+                                                    fontSize: 12,
+                                                  ),
+                                                ),
+                                              ),
+                                          ],
                                         ),
                                       ),
-                                    ),
+                                    ],
                                   ),
-                                );
-                              })
+                                ),
+                              ),
+                            );
+                          })
                               .toList()
                               .reversed
                               .toList(),
@@ -334,12 +407,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.all(0),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.07,
-                /*decoration: BoxDecoration(
-                  color: Color(0x1f000000),
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.zero,
-                  border: Border.all(color: Color(0x4d9e9e9e), width: 1),
-                ),*/
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 4),
                   child: Row(
