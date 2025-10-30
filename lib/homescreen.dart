@@ -334,7 +334,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     },
                                     child: Container(
                                       constraints: BoxConstraints(
-                                        maxWidth: MediaQuery.of(context).size.width * (item.isFile ? 0.7 : 0.9),
+                                        maxWidth:
+                                            MediaQuery.of(context).size.width *
+                                            (item.isFile ? 0.7 : 0.9),
                                       ),
                                       child: Card(
                                         shape: RoundedRectangleBorder(
@@ -369,10 +371,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 ),
                                               ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                vertical: 10.0,
-                                                horizontal: 16.0,
-                                              ),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                    vertical: 10.0,
+                                                    horizontal: 16.0,
+                                                  ),
                                               child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
@@ -383,10 +386,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       color: item.isFile
                                                           ? Colors.blue.shade700
                                                           : Colors.black,
-                                                      decoration: item.isFile
-                                                          ? TextDecoration
-                                                                .underline
-                                                          : TextDecoration.none,
                                                     ),
                                                   ),
                                                   if (item.isFile &&
