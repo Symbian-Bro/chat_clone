@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+class Message {
+  final String text;
+  final bool isFile;
+  final String? filePath;
+
+  Message({required this.text, this.isFile = false, this.filePath});
+}
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -10,7 +18,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var string1 = "Test!!";
-  List<String> notes = [];
+  List<Message> notes = [];
   final TextEditingController txtController = TextEditingController();
 
   void toast(String a) {
@@ -22,7 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
   void push_data() {
     setState(() {
       if (txtController.text.isNotEmpty) {
-        notes.add(txtController.text);
+        notes.add(
+          Message(text: txtController.text, isFile: false, filePath: null),
+        );
         txtController.clear();
       } else {
         toast("Please enter a message");
@@ -256,7 +266,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         vertical: 10.0,
                                         horizontal: 16.0,
                                       ),
-                                      child: Text(item),
+                                      child: Text(item.text),
                                     ),
                                   ),
                                 );
