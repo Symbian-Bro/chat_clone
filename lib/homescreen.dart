@@ -95,10 +95,10 @@ class _HomeScreenState extends State<HomeScreen> {
           final doc = await PdfDocument.openFile(filePath);
           final page = await doc.getPage(1);
           final pageImage = await page.render(
-            width: 200,
-            height: 200,
+            width: page.width * 2,
+            height: page.height * 2,
             format: PdfPageImageFormat.jpeg,
-            quality: 75,
+            quality: 100,
           );
           thumbnail = pageImage?.bytes;
 
@@ -352,9 +352,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                           if (item.isFile &&
                                               item.thumbnailData != null)
                                             Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
+                                              width:
+                                                  MediaQuery.of(
+                                                    context,
+                                                  ).size.width *
                                                   0.7,
                                               height: 150,
                                               child: Image.memory(
