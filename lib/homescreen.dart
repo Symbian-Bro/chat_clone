@@ -44,22 +44,33 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void pick_file() async {
-  FilePickerResult? result = await FilePicker.platform.pickFiles(
-    type: FileType.any,
-  );
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: [
+        'pdf',
+        'doc',
+        'docx',
+        'txt',
+        'rtf',
+        'odt',
+        'xls',
+        'xlsx',
+        'ppt',
+        'pptx',
+      ],
+    );
 
-  if (result != null && result.files.single.path != null) {
-    String fileName = result.files.single.name;
-    String? filePath = result.files.single.path;
+    if (result != null && result.files.single.path != null) {
+      String fileName = result.files.single.name;
+      String? filePath = result.files.single.path;
 
-    setState(() {
-      notes.add(Message(text: fileName, isFile: true, filePath: filePath));
-    });
-  } else {
-    toast("File picking cancelled");
+      setState(() {
+        notes.add(Message(text: fileName, isFile: true, filePath: filePath));
+      });
+    } else {
+      toast("File picking cancelled");
+    }
   }
-}
-
 
   void dialog() {
     int size = notes.length;
@@ -351,7 +362,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: pick_file,
                                     icon: Icon(Icons.attach_file_sharp),
                                   ),
                                   IconButton(
