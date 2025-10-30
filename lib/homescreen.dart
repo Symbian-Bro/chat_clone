@@ -6,6 +6,8 @@ import 'dart:typed_data';
 import 'package:pdfx/pdfx.dart';
 import 'dart:math';
 
+int? a;
+
 class Message {
   final String text;
   final bool isFile;
@@ -93,6 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
       if (filePath != null && fileName.toLowerCase().endsWith('.pdf')) {
         try {
           final doc = await PdfDocument.openFile(filePath);
+          a = doc.pagesCount;
           final page = await doc.getPage(1);
           final pageImage = await page.render(
             width: page.width * 2,
@@ -396,10 +399,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             top: 4.0,
                                                           ),
                                                       child: Text(
-                                                        _formatBytes(
-                                                          item.fileSize!,
-                                                          2,
-                                                        ),
+                                                        '${a} pages • ${_formatBytes(item.fileSize!, 2)} • PDF',
                                                         style: TextStyle(
                                                           color: Colors
                                                               .grey
