@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           title: Text("⚠️ Confirm action ⚠️", textAlign: TextAlign.center),
           content: Text(
-            "Are you sure you want to delete all the\n $size messages?",
+            "Are you sure you want to clear the chat?",
             textAlign: TextAlign.center,
           ),
           actions: [
@@ -376,8 +376,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           elevation: 5,
                           shape: CircleBorder(side: BorderSide(width: 0)),
                           child: Icon(
-                              txtController.text.isNotEmpty ? Icons.send : Icons.mic,
-                              color: Colors.white
+                            txtController.text.isNotEmpty
+                                ? Icons.send
+                                : Icons.mic,
+                            color: Colors.white,
                           ),
                         ),
                       ),
