@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:open_filex/open_filex.dart';
 
 class Message {
   final String text;
@@ -40,6 +42,24 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     });
   }
+
+  void pick_file() async {
+  FilePickerResult? result = await FilePicker.platform.pickFiles(
+    type: FileType.any,
+  );
+
+  if (result != null && result.files.single.path != null) {
+    String fileName = result.files.single.name;
+    String? filePath = result.files.single.path;
+
+    setState(() {
+      notes.add(Message(text: fileName, isFile: true, filePath: filePath));
+    });
+  } else {
+    toast("File picking cancelled");
+  }
+}
+
 
   void dialog() {
     int size = notes.length;
